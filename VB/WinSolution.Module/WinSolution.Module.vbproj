@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -31,33 +31,32 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v9.1">
+    <Reference Include="DevExpress.Printing.v13.1.Core">
       <Private>True</Private>
-      <HintPath>d:\Projects\Test_Examples\DLLs\9.1.2\DevExpress.Data.v9.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v9.1">
+    <Reference Include="DevExpress.Data.v13.1">
       <Private>True</Private>
-      <HintPath>d:\Projects\Test_Examples\DLLs\9.1.2\DevExpress.ExpressApp.v9.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Objects.v9.1">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v13.1">
       <Private>True</Private>
-      <HintPath>d:\Projects\Test_Examples\DLLs\9.1.2\DevExpress.ExpressApp.Objects.v9.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v9.1">
+    <Reference Include="DevExpress.ExpressApp.v13.1">
       <Private>True</Private>
-      <HintPath>d:\Projects\Test_Examples\DLLs\9.1.2\DevExpress.ExpressApp.Validation.v9.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v9.1">
+    <Reference Include="DevExpress.ExpressApp.Objects.v13.1">
       <Private>True</Private>
-      <HintPath>d:\Projects\Test_Examples\DLLs\9.1.2\DevExpress.Persistent.Base.v9.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v9.1">
+    <Reference Include="DevExpress.ExpressApp.Validation.v13.1">
       <Private>True</Private>
-      <HintPath>d:\Projects\Test_Examples\DLLs\9.1.2\DevExpress.Persistent.BaseImpl.v9.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpo.v9.1">
+    <Reference Include="DevExpress.Persistent.Base.v13.1">
       <Private>True</Private>
-      <HintPath>d:\Projects\Test_Examples\DLLs\9.1.2\DevExpress.Xpo.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v13.1">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v13.1">
+      <Private>True</Private>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
