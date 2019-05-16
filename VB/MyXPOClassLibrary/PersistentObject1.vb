@@ -1,11 +1,11 @@
-Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports DevExpress.Xpo
 
 Namespace MyXPOClassLibrary
 
 	Public Class PersistentObject1
 		Inherits XPObject
+
 		'public PersistentObject1()
 		'    : base() {
 		'    // This constructor is used when an object is loaded from a persistent storage.

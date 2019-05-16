@@ -1,6 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
-Namespace WinSolution.Win
+﻿Namespace WinSolution.Win
 	Partial Public Class WinSolutionWindowsFormsApplication
 		''' <summary> 
 		''' Required designer variable.
@@ -36,14 +34,16 @@ Namespace WinSolution.Win
 			' WinSolutionWindowsFormsApplication
 			' 
 			Me.ApplicationName = "WinSolution"
-			Me.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Password=;User ID=Admin;Data Source=WinSolution." & "mdb;Mode=Share Deny None;"
+			Me.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Password=;User ID=Admin;Data Source=WinSolution." &
+				"mdb;Mode=Share Deny None;"
 			Me.Modules.Add(Me.module1)
 			Me.Modules.Add(Me.module2)
 			Me.Modules.Add(Me.module3)
 			Me.Modules.Add(Me.module5)
 			Me.Modules.Add(Me.securityModule1)
 			Me.Modules.Add(Me.businessClassLibraryCustomizationModule1)
-'			Me.DatabaseVersionMismatch += New System.EventHandler(Of DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs)(Me.WinSolutionWindowsFormsApplication_DatabaseVersionMismatch);
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.DatabaseVersionMismatch += new System.EventHandler<DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs>(this.WinSolutionWindowsFormsApplication_DatabaseVersionMismatch);
 			CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
 		End Sub
