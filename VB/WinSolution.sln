@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WinSolution.Module", "WinSolution.Module\WinSolution.Module.vbproj", "{35F57F7D-051F-459F-9439-36F74076DD9F}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WinSolution.Win", "WinSolution.Win\WinSolution.Win.vbproj", "{22782832-92C2-4D23-BCD0-F02FB9EFA4C6}"
@@ -27,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DE71A2B-6369-4CB7-A94B-CAE716E11767}
 	EndGlobalSection
 EndGlobal

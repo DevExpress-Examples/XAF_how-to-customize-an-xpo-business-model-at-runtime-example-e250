@@ -1,6 +1,5 @@
 using DevExpress.ExpressApp;
-using DevExpress.Xpo;
-using DevExpress.Xpo.Metadata;
+using DevExpress.ExpressApp.DC;
 using MyXPOClassLibrary;
 
 namespace WinSolution.Module {
@@ -10,23 +9,30 @@ namespace WinSolution.Module {
         }
         public override void CustomizeTypesInfo(DevExpress.ExpressApp.DC.ITypesInfo typesInfo) {
             base.CustomizeTypesInfo(typesInfo);
-            typesInfo.FindTypeInfo(typeof(PersistentObject1)).AddAttribute(new DevExpress.Persistent.Base.DefaultClassOptionsAttribute());
 
-            //Dennis: simple creation of a new member.
-            typesInfo.FindTypeInfo(typeof(PersistentObject1)).CreateMember("NewIntField", typeof(int));
+            ITypeInfo typeInfo1 = typesInfo.FindTypeInfo(typeof(PersistentObject1));
+            typeInfo1.AddAttribute(new DevExpress.Persistent.Base.DefaultClassOptionsAttribute());
 
-            //Dennis: establishing a One-To-Many relationship between two classes.
-            XPDictionary xpDictionary = DevExpress.ExpressApp.Xpo.XpoTypesInfoHelper.GetXpoTypeInfoSource().XPDictionary;
-            if (xpDictionary.GetClassInfo(typeof(PersistentObject1)).FindMember("PersistentObject2s") == null) {
-                xpDictionary.GetClassInfo(typeof(PersistentObject1)).CreateMember("PersistentObject2s", typeof(XPCollection<PersistentObject2>), true,
-                    new AggregatedAttribute(), new AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject2)));
+            IMemberInfo memberInfo0 = typeInfo1.FindMember("NewIntField");
+            if(memberInfo0 == null) {
+                typeInfo1.CreateMember("NewIntField", typeof(int));
             }
-            if (xpDictionary.GetClassInfo(typeof(PersistentObject2)).FindMember("PersistentObject1") == null) {
-                xpDictionary.GetClassInfo(typeof(PersistentObject2)).CreateMember("PersistentObject1", typeof(PersistentObject1), new AssociationAttribute("PersistentObject1-PersistentObject2s"));
+
+            ITypeInfo typeInfo2 = typesInfo.FindTypeInfo(typeof(PersistentObject2));
+            IMemberInfo memberInfo1 = typeInfo1.FindMember("PersistentObject2s");
+            IMemberInfo memberInfo2 = typeInfo2.FindMember("PersistentObject1");
+            if(memberInfo1 == null) {
+                memberInfo1 = typeInfo1.CreateMember("PersistentObject2s", typeof(DevExpress.Xpo.XPCollection<PersistentObject2>));
+                memberInfo1.AddAttribute(new DevExpress.Xpo.AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject2)), true);
+                memberInfo1.AddAttribute(new DevExpress.Xpo.AggregatedAttribute(), true);
             }
-            //Dennis: take special note of the fact that you have to refresh information about type, only if you made the changes in the XPDictionary. If you made the changes directly in the TypeInfo, refreshing is not necessary.
-            XafTypesInfo.Instance.RefreshInfo(typeof(PersistentObject1));
-            XafTypesInfo.Instance.RefreshInfo(typeof(PersistentObject2));
+            if(memberInfo2 == null) {
+                memberInfo2 = typeInfo2.CreateMember("PersistentObject1", typeof(PersistentObject1));
+                memberInfo2.AddAttribute(new DevExpress.Xpo.AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject1)), true);
+            }
+
+            typesInfo.RefreshInfo(typeof(PersistentObject1));
+            typesInfo.RefreshInfo(typeof(PersistentObject2));
         }
     }
 }
