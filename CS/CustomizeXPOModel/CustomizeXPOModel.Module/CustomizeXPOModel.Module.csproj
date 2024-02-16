@@ -25,4 +25,7 @@
     <PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="23.2.4" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.34.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyXPOClassLibrary\MyXPOClassLibrary.csproj" />
+  </ItemGroup>
 </Project>
