@@ -11,8 +11,8 @@ You can extend existing business classes without modifying their source code. Fo
 
 This example modifies business classes declared in a separate project as follows:
 - Adds an attribute ([DefaultClassOptionsAttribute](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.DefaultClassOptionsAttribute))
-- Creates a new simple persistent property (`NewIntField`)
-- Creates new reference and collection properties linked by an association (one-to-many relationship between `PersistentObject1` and `PersistentObject2` classes)
+- Creates a simple persistent property (`NewIntField`)
+- Creates reference and collection properties linked by an association (one-to-many relationship between `PersistentObject1` and `PersistentObject2` classes)
 
 ![Run application](application.png)
 
