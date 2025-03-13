@@ -5,23 +5,60 @@
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
 
+# XAF - Customize an XPO Business Model at Runtime
 
-# How to customize an XPO business model at runtime (Example)
+You can extend existing business classes without modifying their source code. For instance, this approach is helpful when you work with an assembly that contains persistent classes.
 
-Sometimes there is a requirement to extend existing business classes when you cannot modify their source code.
+This example modifies business classes declared in a separate project as follows:
+- Adds an attribute ([DefaultClassOptionsAttribute](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.DefaultClassOptionsAttribute))
+- Creates a new simple persistent property (`NewIntField`)
+- Creates new reference and collection properties linked by an association (one-to-many relationship between `PersistentObject1` and `PersistentObject2` classes)
 
-For instance, you have an assembly where some persistent classes are declared. You want to use it in your XAF application and add attributes, new members, etc..
+![Run application](application.png)
 
 ## Implementation Details
 
-To use types from external assemblies, add them to the application as described in the [Ways to Add a Business Class - Add Classes From a Business Class Library or Module](https://docs.devexpress.com/eXpressAppFramework/112847/concepts/business-model-design/business-model-design-with-xpo/ways-to-add-a-business-class#add-classes-from-a-business-class-library-or-module) article.
+1. Populate the [AdditionalExportedTypes](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.ModuleBase.AdditionalExportedTypes) property with types from external storage to add them to the application.
+    ```cs
+    this.AdditionalExportedTypes.Add(typeof(MyXPOClassLibrary.PersistentObject1));
+    this.AdditionalExportedTypes.Add(typeof(MyXPOClassLibrary.PersistentObject2));
+    ```
 
-To see how to extend business classes at runtime, refer to the [eXpressApp Framework > Concepts > Business Model Design > Types Info Subsystem > Use Metadata to Customize Business Classes Dynamically](https://documentation.devexpress.com/eXpressAppFramework/113583/Concepts/Business-Model-Design/Types-Info-Subsystem/Use-Metadata-to-Customize-Business-Classes-Dynamically) article.
+2. Modify the added types as follows:
 
-This example demonstrates how to:
-- Add an attribute to an existing class
-- Create a new simple persistent property
-- Create new reference and collection properties linked by an association
+    * Call the [AddAttribute](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.DC.IBaseInfo.AddAttribute(System.Attribute)) method to add an attribute to an existing class.  
+        Note that by design you cannot dynamically add or remove the `OptimisticLocking` or `DeferredDeletion` attribute.
+        ```cs
+        ITypeInfo typeInfo1 = typesInfo.FindTypeInfo(typeof(PersistentObject1));
+        typeInfo1.AddAttribute(new DevExpress.Persistent.Base.DefaultClassOptionsAttribute());
+        ```
+    * Call the [CreateMember](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.DC.ITypeInfo.CreateMember(System.String-System.Type)) method to create a new simple persistent property.  
+        ```cs
+        IMemberInfo memberInfo0 = typeInfo1.FindMember("NewIntField");
+        if (memberInfo0 == null) {
+            typeInfo1.CreateMember("NewIntField", typeof(int));
+        }
+        ```
+    * Use both [AddAttribute](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.DC.IBaseInfo.AddAttribute(System.Attribute)) and [CreateMember](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.DC.ITypeInfo.CreateMember(System.String-System.Type)) methods to create new reference and collection properties linked by an association.
+        ```cs
+        ITypeInfo typeInfo2 = typesInfo.FindTypeInfo(typeof(PersistentObject2));
+        IMemberInfo memberInfo1 = typeInfo1.FindMember("PersistentObject2s");
+        IMemberInfo memberInfo2 = typeInfo2.FindMember("PersistentObject1");
+        if (memberInfo1 == null) {
+            memberInfo1 = typeInfo1.CreateMember("PersistentObject2s", typeof(DevExpress.Xpo.XPCollection<PersistentObject2>));
+            memberInfo1.AddAttribute(new DevExpress.Xpo.AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject2)), true);
+            memberInfo1.AddAttribute(new DevExpress.Xpo.AggregatedAttribute(), true);
+        }
+        if (memberInfo2 == null) {
+            memberInfo2 = typeInfo2.CreateMember("PersistentObject1", typeof(PersistentObject1));
+            memberInfo2.AddAttribute(new DevExpress.Xpo.AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject1)), true);
+        }
+        ```
+3. Call the [RefreshInfo(Type)](https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.DC.ITypesInfo.RefreshInfo(System.Type)) method to refresh metadata for the modified types.
+    ```cs
+    typesInfo.RefreshInfo(typeof(PersistentObject1));
+    typesInfo.RefreshInfo(typeof(PersistentObject2));
+    ```
 
 ## Files to Review
 
@@ -29,18 +66,14 @@ This example demonstrates how to:
 * [PersistentObject2.cs](CS/CustomizeXPOModel/MyXPOClassLibrary/PersistentObject2.cs)
 * [Module.cs](CS/CustomizeXPOModel/CustomizeXPOModel.Module/Module.cs) 
 
+## Documentation 
 
-### Important notes
+* [Ways to Add a Business Class](https://docs.devexpress.com/eXpressAppFramework/112847/business-model-design-orm/ways-to-add-a-business-class#add-classes-from-a-business-class-library-or-module)
+* [Use Metadata to Customize Business Classes Dynamically](https://docs.devexpress.com/eXpressAppFramework/113583/business-model-design-orm/types-info-subsystem/use-metadata-to-customize-business-classes-dynamically)
+* [Access Business Object Metadata](https://docs.devexpress.com/eXpressAppFramework/113224/business-model-design-orm/types-info-subsystem/access-business-object-metadata)
+* [How to create business classes at runtime based on predefined configurations or allow user to define custom members via the application UI](https://www.devexpress.com/Support/Center/p/T284822)
+* [How to define a custom member for a domain component (DC) at runtime?](https://www.devexpress.com/Support/Center/p/S34769)
 
-1. By design you cannot dynamically add or remove the *OptimisticLocking* and *DeferredDeletion* attributes.
-2. Adding custom members for Domain Components (DC) should be done on the *XafApplication.SettingUp* event as described at [How do I define a custom member for a domain component (DC) at runtime?](https://www.devexpress.com/Support/Center/p/S34769).
-
-
-### Documentation 
-
-[How to: Access Business Class Metadata](https://www.devexpress.com/Support/Center/p/E1649)
-
-[How to create business classes at runtime based on predefined configurations or allow user to define custom members via the application UI](https://www.devexpress.com/Support/Center/p/T284822)
 <!-- feedback -->
 ## Does this example address your development requirements/objectives?
 
