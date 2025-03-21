@@ -68,7 +68,7 @@ This example modifies business classes declared in a separate project as follows
 
 ## Documentation 
 
-* [Ways to Add a Business Class](https://docs.devexpress.com/eXpressAppFramework/112847/business-model-design-orm/ways-to-add-a-business-class#add-classes-from-a-business-class-library-or-module)
+* [Ways to Add a Business Class](https://docs.devexpress.com/eXpressAppFramework/112847/business-model-design-orm/ways-to-add-a-business-class)
 * [Use Metadata to Customize Business Classes Dynamically](https://docs.devexpress.com/eXpressAppFramework/113583/business-model-design-orm/types-info-subsystem/use-metadata-to-customize-business-classes-dynamically)
 * [Access Business Object Metadata](https://docs.devexpress.com/eXpressAppFramework/113224/business-model-design-orm/types-info-subsystem/access-business-object-metadata)
 * [How to create business classes at runtime based on predefined configurations or allow user to define custom members via the application UI](https://www.devexpress.com/Support/Center/p/T284822)
