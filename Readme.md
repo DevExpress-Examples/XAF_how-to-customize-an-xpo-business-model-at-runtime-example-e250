@@ -6,7 +6,7 @@
 
 # XAF - Customize an XPO Business Model at Runtime
 
-You can extend existing business classes without modifying their source code. For instance, this approach is helpful when you work with an assembly that contains persistent classes.
+You can extend existing business classes without modifying their source code. For instance, when you work with an assembly that contains persistent classes.
 
 This example modifies business classes declared in a separate project as follows:
 - Adds an attribute ([DefaultClassOptionsAttribute](https://docs.devexpress.com/eXpressAppFramework/DevExpress.Persistent.Base.DefaultClassOptionsAttribute))
