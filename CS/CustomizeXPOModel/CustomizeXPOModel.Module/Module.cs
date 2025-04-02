@@ -19,13 +19,13 @@ namespace CustomizeXPOModel.Module;
 // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.ModuleBase.
 public sealed class CustomizeXPOModelModule : ModuleBase {
     public CustomizeXPOModelModule() {
-		// 
-		// CustomizeXPOModelModule
-		// 
-		RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
-		RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
-		RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule));
-		RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Validation.ValidationModule));
+	// 
+	// CustomizeXPOModelModule
+	// 
+	RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.SystemModule.SystemModule));
+	RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule));
+	RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule));
+	RequiredModuleTypes.Add(typeof(DevExpress.ExpressApp.Validation.ValidationModule));
         this.AdditionalExportedTypes.Add(typeof(MyXPOClassLibrary.PersistentObject1));
         this.AdditionalExportedTypes.Add(typeof(MyXPOClassLibrary.PersistentObject2));
     }
