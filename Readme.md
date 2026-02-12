@@ -75,7 +75,7 @@ This example modifies business classes declared in a separate project as follows
 * [How to define a custom member for a domain component (DC) at runtime?](https://www.devexpress.com/Support/Center/p/S34769)
 
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=xaf-customize-xpo-business-model-at-runtime&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=xaf-customize-xpo-business-model-at-runtime&~~~was_helpful=no)
 
