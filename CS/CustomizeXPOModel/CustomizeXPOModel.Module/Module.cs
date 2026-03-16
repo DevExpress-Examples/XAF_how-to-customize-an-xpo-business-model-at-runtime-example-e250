@@ -51,13 +51,13 @@ public sealed class CustomizeXPOModelModule : ModuleBase {
         IMemberInfo memberInfo1 = typeInfo1.FindMember("PersistentObject2s");
         IMemberInfo memberInfo2 = typeInfo2.FindMember("PersistentObject1");
         if (memberInfo1 == null) {
-            memberInfo1 = typeInfo1.CreateMember("PersistentObject2s", typeof(DevExpress.Xpo.XPCollection<PersistentObject2>));
-            memberInfo1.AddAttribute(new DevExpress.Xpo.AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject2)), true);
-            memberInfo1.AddAttribute(new DevExpress.Xpo.AggregatedAttribute(), true);
+            memberInfo1 = typeInfo1.CreateMember("PersistentObject2s", typeof(DevExpress.Xpo.XPCollection<PersistentObject2>))
+                .AddAttribute(new DevExpress.Xpo.AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject2)), true)
+                .AddAttribute(new DevExpress.Xpo.AggregatedAttribute(), true);
         }
         if (memberInfo2 == null) {
-            memberInfo2 = typeInfo2.CreateMember("PersistentObject1", typeof(PersistentObject1));
-            memberInfo2.AddAttribute(new DevExpress.Xpo.AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject1)), true);
+            memberInfo2 = typeInfo2.CreateMember("PersistentObject1", typeof(PersistentObject1))
+                .AddAttribute(new DevExpress.Xpo.AssociationAttribute("PersistentObject1-PersistentObject2s", typeof(PersistentObject1)), true);
         }
 
         typesInfo.RefreshInfo(typeof(PersistentObject1));
