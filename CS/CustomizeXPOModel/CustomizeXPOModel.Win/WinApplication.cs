@@ -14,7 +14,6 @@ public class CustomizeXPOModelWindowsFormsApplication : WinApplication {
 		SplashScreen = new DXSplashScreen(typeof(XafSplashScreen), new DefaultOverlayFormOptions());
         ApplicationName = "CustomizeXPOModel";
         CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
-        UseOldTemplates = false;
         DatabaseVersionMismatch += CustomizeXPOModelWindowsFormsApplication_DatabaseVersionMismatch;
         CustomizeLanguagesList += CustomizeXPOModelWindowsFormsApplication_CustomizeLanguagesList;
     }
